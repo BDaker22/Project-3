@@ -3,6 +3,8 @@ package project3;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -25,7 +27,9 @@ public class Project3 extends Application {
     private final String rateString = ".05";
     private final String timeString = "30";
     private final String numOfCompString = "12";
-    
+    private final Insets insets = new Insets(2, 0, 2, 5); //Top, Right, Bottom, Left
+    private final Insets radioInsets = new Insets(12, 0, 15, 5);
+    private final Insets btnInsets = new Insets(0, 0, 10, 5);
     
     /* CONTROLS
     1 BorderPane
@@ -132,6 +136,7 @@ public class Project3 extends Application {
         borderPane.setTop(setUpRadioButtons());
         borderPane.setCenter(setUpLabelsAndTextFields());
         calculateBtn = new Button("Calculate");
+        calculateBtn.setPrefWidth(100);
         borderPane.setBottom(calculateBtn);
         scene = new Scene(borderPane, sceneWidth, sceneHeight);
     }
@@ -150,9 +155,15 @@ public class Project3 extends Application {
         radioBtns.getChildren().add(futureValue);
         radioBtns.getChildren().add(presentValue);
         
+        radioBtns.setPadding(radioInsets);
+        radioBtns.setPrefHeight(30);
+        radioBtns.setSpacing(15);
+        
+        
         return radioBtns;
     }
     
+    //Setup the labels and textfields
     private VBox setUpLabelsAndTextFields(){
         VBox labelsAndTextFields = new VBox();
         labelsAndTextFields.getChildren().add(setUpPrincipal());
@@ -160,6 +171,9 @@ public class Project3 extends Application {
         labelsAndTextFields.getChildren().add(setUpTime());
         labelsAndTextFields.getChildren().add(setUpNumberOfCompoundings());
         labelsAndTextFields.getChildren().add(setUpAmount());
+        
+        //Padding
+        labelsAndTextFields.setPadding(insets); //Top, Right, Bottom, Left
         
         return labelsAndTextFields;
     }
@@ -173,6 +187,9 @@ public class Project3 extends Application {
         principalHB.getChildren().add(principalLabel);
         principalHB.getChildren().add(principalTF);
         
+        principalHB.setPadding(insets);
+        principalHB.setSpacing(121);
+        
         return principalHB;
     }
     
@@ -184,6 +201,9 @@ public class Project3 extends Application {
         HBox rateHB = new HBox();
         rateHB.getChildren().add(rateLabel);
         rateHB.getChildren().add(rateTF);
+        
+        rateHB.setPadding(insets);
+        rateHB.setSpacing(146);
         
         return rateHB;
     }
@@ -197,6 +217,9 @@ public class Project3 extends Application {
         timeHB.getChildren().add(timeLabel);
         timeHB.getChildren().add(timeTF);
         
+        timeHB.setPadding(insets);
+        timeHB.setSpacing(143);
+        
         return timeHB;
     }
     
@@ -209,6 +232,9 @@ public class Project3 extends Application {
         numOfCompHB.getChildren().add(numOfCompLabel);
         numOfCompHB.getChildren().add(numOfCompTF);
         
+        numOfCompHB.setPadding(insets);
+        numOfCompHB.setSpacing(10);
+        
         return numOfCompHB;
     }
     
@@ -216,10 +242,12 @@ public class Project3 extends Application {
         amountLabel = new Label("Amount");
         amountTF = new TextField();
         
-        
         HBox amountHB = new HBox();
         amountHB.getChildren().add(amountLabel);
         amountHB.getChildren().add(amountTF);
+        
+        amountHB.setPadding(insets);
+        amountHB.setSpacing(126);
         
         return amountHB;
     }
