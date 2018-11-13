@@ -1,5 +1,6 @@
 package project3;
 
+import java.text.DecimalFormat;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -224,7 +225,10 @@ public class Project3 extends Application {
 
         double amountValue = p * Math.pow(1 + r / n, n * t);
         
-        amountTF.setText(String.valueOf(amountValue));
+        DecimalFormat df = new DecimalFormat("#,###,##0.00");
+        String amountString = df.format(amountValue);
+        
+        amountTF.setText(amountString);
     }
 
     private void calculatePresentValue() {
@@ -246,7 +250,11 @@ public class Project3 extends Application {
 
         double presentValue = amountValue * Math.pow(1 + r / n, -n * t);
         
-        amountTF.setText(String.valueOf(presentValue));
+        DecimalFormat df = new DecimalFormat("#,###,##0.00");
+        String amountString = df.format(presentValue);
+        
+        amountTF.setText(amountString);
+        
     }
 
     public static void main(String[] args) {
