@@ -4,7 +4,6 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -13,7 +12,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -113,18 +111,26 @@ public class Project3 extends Application {
     
     */
     
+    
     @Override
     public void start(Stage primaryStage) {
-        /*
-        btn.setOnAction(new EventHandler<ActionEvent>() {
+        
+        drawVisualInterface();
+        
+        calculateBtn.setOnAction(new EventHandler<ActionEvent>() {
             
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
+                if(futureValue.isSelected()){
+                    calculateFutureValue();
+                }
+                else{
+                    calculatePresentValue();
+                }
             }
         });
-        */
-        drawVisualInterface();
+        
+        
         
         primaryStage.setTitle("Financial App");
         primaryStage.setScene(scene);
@@ -227,7 +233,6 @@ public class Project3 extends Application {
         numOfCompLabel = new Label("Number Of Compoundings");
         numOfCompTF = new TextField(numOfCompString);
         
-        
         HBox numOfCompHB = new HBox();
         numOfCompHB.getChildren().add(numOfCompLabel);
         numOfCompHB.getChildren().add(numOfCompTF);
@@ -253,7 +258,7 @@ public class Project3 extends Application {
     }
     
     private void calculateFutureValue(){
-        if(futureValue.isSelected()){
+        
             double principalValue = Double.parseDouble(principalTF.getText());
             double rateValue = Double.parseDouble(rateTF.getText());
             double numberOfCompoundingsValue = Double.parseDouble(numOfCompTF.getText());
@@ -262,20 +267,29 @@ public class Project3 extends Application {
             double amountValue = principalValue * 
                     Math.pow(1 + rateValue / numberOfCompoundingsValue, 
                             numberOfCompoundingsValue * timeValue);
-        }
-        else{
-            double principalValue = Double.parseDouble(principalTF.getText());
-            double rateValue = Double.parseDouble(rateTF.getText());
-            double numberOfCompoundingsValue = Double.parseDouble(numOfCompTF.getText());
-            double timeValue = Double.parseDouble(timeTF.getText());
+        
             
-            double amountValue = principalValue * 
-                    Math.pow(1 + rateValue / numberOfCompoundingsValue, 
-                            numberOfCompoundingsValue * timeValue);
+            String amountString = Double.toString(amountValue);
             
-            double presentValue = amountValue * Math.pow(1 + rateValue / numberOfCompoundingsValue, -numberOfCompoundingsValue * timeValue);
-        }
+            amountTF.setText(amountString);
+            
+            
     }
+    
+        private void calculatePresentValue() {
+            double principalValue = Double.parseDouble(principalTF.getText());
+            double rateValue = Double.parseDouble(rateTF.getText());
+            double numberOfCompoundingsValue = Double.parseDouble(numOfCompTF.getText());
+            double timeValue = Double.parseDouble(timeTF.getText());
+            
+            double amountValue = principalValue * 
+                    Math.pow(1 + rateValue / numberOfCompoundingsValue, 
+                            numberOfCompoundingsValue * timeValue);
+            
+            double presentValue = amountValue * Math.pow(1 + rateValue / numberOfCompoundingsValue,
+                    -numberOfCompoundingsValue * timeValue);
+        }
+    
     
     /*
     
