@@ -160,7 +160,7 @@ public class Project3 extends Application {
         rateHB.getChildren().add(rateTF);
 
         rateHB.setPadding(insets);
-        rateHB.setSpacing(146);
+        rateHB.setSpacing(143);
 
         return rateHB;
     }
@@ -174,7 +174,7 @@ public class Project3 extends Application {
         timeHB.getChildren().add(timeTF);
 
         timeHB.setPadding(insets);
-        timeHB.setSpacing(143);
+        timeHB.setSpacing(141);
 
         return timeHB;
     }
@@ -188,7 +188,7 @@ public class Project3 extends Application {
         numOfCompHB.getChildren().add(numOfCompTF);
 
         numOfCompHB.setPadding(insets);
-        numOfCompHB.setSpacing(10);
+        numOfCompHB.setSpacing(22);
 
         return numOfCompHB;
     }
@@ -202,7 +202,7 @@ public class Project3 extends Application {
         amountHB.getChildren().add(amountTF);
 
         amountHB.setPadding(insets);
-        amountHB.setSpacing(126);
+        amountHB.setSpacing(124);
 
         return amountHB;
     }
@@ -234,6 +234,7 @@ public class Project3 extends Application {
     private void calculatePresentValue() {
         /*
         
+        A = Amount
         P = Principal
         R = Interest Rate
         N = Number of compounding a year
@@ -245,15 +246,16 @@ public class Project3 extends Application {
         double r = Double.parseDouble(rateTF.getText());
         double n = Double.parseDouble(numOfCompTF.getText());
         double t = Double.parseDouble(timeTF.getText());
+        double a = Double.parseDouble(amountTF.getText());
 
-        double amountValue = p * Math.pow(1 + r / n, n * t);
+        
 
-        double presentValue = amountValue * Math.pow(1 + r / n, -n * t);
+        double presentValue = a * Math.pow(1 + r / n, -n * t);
         
         DecimalFormat df = new DecimalFormat("#,###,##0.00");
         String amountString = df.format(presentValue);
         
-        amountTF.setText(amountString);
+        principalTF.setText(amountString);
         
     }
 
